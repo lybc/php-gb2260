@@ -16,8 +16,8 @@ class GB2260
     public function __construct($currentCode)
     {
         $this->data = require __DIR__ . '/data.php';
-        if (! array_key_exists($currentCode, $this->data)) {
-            throw new InvalidCodeException('invalid code');
+        if (! array_key_exists($currentCode, $this->data) || is_string($currentCode)) {
+            throw new InvalidCodeException('invalid code or code is not number');
         }
         $this->currentCode = $currentCode;
     }
@@ -25,6 +25,15 @@ class GB2260
     public static function areaCode($code)
     {
         return new self($code);
+    }
+
+    /**
+     * 获取当前代码的名称
+     * @return mixed
+     */
+    public function getCurrent()
+    {
+        return $this->data[$this->currentCode];
     }
 
     /**
@@ -53,6 +62,10 @@ class GB2260
         return ! $this->isProvision() && ! $this->isCity();
     }
 
+    /**
+     * 根据当前的国标代码获取所在省的名称
+     * @return mixed
+     */
     public function getProvince()
     {
         $provinceCode = intval(substr($this->currentCode, 0, 2) . '0000');
@@ -60,6 +73,10 @@ class GB2260
         return $this->data[$provinceCode];
     }
 
+    /**
+     * 根据当前的国标代码获取所在市的名称，如代码为省代码，则得到该省所有市的数组
+     * @return mixed
+     */
     public function getCity()
     {
         if ($this->isProvision()) {
@@ -76,7 +93,9 @@ class GB2260
     }
 
     /**
-     * @expectedException InvalidCodeException
+     * 根据当前的国标代码获取所在市的名称，如代码为省或市代码，则得到所有区的数组
+     * @return array|mixed
+     * @throws InvalidCodeException
      */
     public function getDistrict()
     {
@@ -111,6 +130,11 @@ class GB2260
         }
     }
 
+    /**
+     * 根据传入的字符串格式输出
+     * @param $formatString
+     * @return mixed
+     */
     public function format($formatString)
     {
         if ($this->isProvision()) {

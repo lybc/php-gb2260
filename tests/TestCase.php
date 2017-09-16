@@ -204,4 +204,9 @@ class TestCase extends PHPUnitTestCase
         GB2260::areaCode('abcdefg')->getCity();
         GB2260::areaCode('abcdefg')->getDistrict();
     }
+
+    function testGetCurrent()
+    {
+        $this->assertEquals(GB2260::areaCode(360313)->getCurrent(), '湘东区');
+    }
 }
