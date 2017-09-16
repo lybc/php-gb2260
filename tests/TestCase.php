@@ -6,7 +6,7 @@ class TestCase extends PHPUnitTestCase
 {
     function testJudgement()
     {
-        $provinceAreaCode = 360000; // 山西省
+        $provinceAreaCode = 360000; // 江西省
         $cityAreaCode = 360300;     // 萍乡市
         $districtAreaCode = 360313; // 湘东区
         $this->assertTrue(GB2260::areaCode($provinceAreaCode)->isProvision());
