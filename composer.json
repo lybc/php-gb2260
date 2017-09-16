@@ -7,6 +7,7 @@
             "Lybc\\PhpGB2260\\": "src"
         }
     },
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "lybc",
