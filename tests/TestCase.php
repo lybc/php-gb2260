@@ -9,16 +9,16 @@ class TestCase extends PHPUnitTestCase
         $provinceAreaCode = 360000; // 江西省
         $cityAreaCode = 360300;     // 萍乡市
         $districtAreaCode = 360313; // 湘东区
-        $this->assertTrue(GB2260::areaCode($provinceAreaCode)->isProvision());
+        $this->assertTrue(GB2260::areaCode($provinceAreaCode)->isProvince());
         $this->assertFalse(GB2260::areaCode($provinceAreaCode)->isCity());
         $this->assertFalse(GB2260::areaCode($provinceAreaCode)->isDistrict());
 
         $this->assertTrue(GB2260::areaCode($cityAreaCode)->isCity());
-        $this->assertFalse(GB2260::areaCode($cityAreaCode)->isProvision());
+        $this->assertFalse(GB2260::areaCode($cityAreaCode)->isProvince());
         $this->assertFalse(GB2260::areaCode($cityAreaCode)->isDistrict());
 
         $this->assertTrue(GB2260::areaCode($districtAreaCode)->isDistrict());
-        $this->assertFalse(GB2260::areaCode($districtAreaCode)->isProvision());
+        $this->assertFalse(GB2260::areaCode($districtAreaCode)->isProvince());
         $this->assertFalse(GB2260::areaCode($districtAreaCode)->isCity());
     }
 

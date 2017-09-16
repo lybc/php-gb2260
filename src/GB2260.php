@@ -40,7 +40,7 @@ class GB2260
      * 国标代码后4位为0的为省或直辖市
      * @return bool
      */
-    public function isProvision()
+    public function isProvince()
     {
         return substr($this->currentCode, -4, 4) === '0000';
     }
@@ -51,7 +51,7 @@ class GB2260
      */
     public function isCity()
     {
-        return ! $this->isProvision() && substr($this->currentCode, -2, 2) === '00';
+        return ! $this->isProvince() && substr($this->currentCode, -2, 2) === '00';
     }
 
     /**
@@ -59,7 +59,7 @@ class GB2260
      */
     public function isDistrict()
     {
-        return ! $this->isProvision() && ! $this->isCity();
+        return ! $this->isProvince() && ! $this->isCity();
     }
 
     /**
@@ -79,7 +79,7 @@ class GB2260
      */
     public function getCity()
     {
-        if ($this->isProvision()) {
+        if ($this->isProvince()) {
             return array_filter($this->data, function($code) {
                 return $code > $this->currentCode
                     && $code < $this->currentCode + 10000
@@ -107,7 +107,7 @@ class GB2260
                     && $code < $this->currentCode + 100
                     &&  substr($code, -2, 2) !== '00';
             }, ARRAY_FILTER_USE_KEY);
-        } else if ($this->isProvision()) {
+        } else if ($this->isProvince()) {
             return array_filter($this->data, function($code) {
                 return $code > $this->currentCode
                     && $code < $this->currentCode + 10000
@@ -137,7 +137,7 @@ class GB2260
      */
     public function format($formatString)
     {
-        if ($this->isProvision()) {
+        if ($this->isProvince()) {
             $result = str_replace('{p}', $this->getProvince(), $formatString);
         } else if ($this->isCity()) {
             $result = str_replace(['{p}', '{c}'], [$this->getProvince(), $this->getCity()], $formatString);

@@ -17,7 +17,7 @@ $districtAreaCode = 360313; // 湘东区
 
 
 // 判断 code 是否省市区
-GB2260::areaCode($provinceAreaCode)->isProvision();
+GB2260::areaCode($provinceAreaCode)->isProvince();
 GB2260::areaCode($provinceAreaCode)->isCity();
 GB2260::areaCode($provinceAreaCode)->isDistrict();
 
