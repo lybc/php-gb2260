@@ -80,7 +80,7 @@ class GB2260
     public function getCity()
     {
         if ($this->isProvince()) {
-            return array_filter($this->data, function($code) {
+            return array_filter($this->data, function ($code) {
                 return $code > $this->currentCode
                     && $code < $this->currentCode + 10000
                     &&  substr($code, -2, 2) === '00';
@@ -101,14 +101,14 @@ class GB2260
     {
         if ($this->isDistrict()) {
             return $this->data[$this->currentCode];
-        } else if ($this->isCity()) {
-            return array_filter($this->data, function($code) {
+        } elseif ($this->isCity()) {
+            return array_filter($this->data, function ($code) {
                 return $code > $this->currentCode
                     && $code < $this->currentCode + 100
                     &&  substr($code, -2, 2) !== '00';
             }, ARRAY_FILTER_USE_KEY);
-        } else if ($this->isProvince()) {
-            return array_filter($this->data, function($code) {
+        } elseif ($this->isProvince()) {
+            return array_filter($this->data, function ($code) {
                 return $code > $this->currentCode
                     && $code < $this->currentCode + 10000
                     &&  substr($code, -2, 2) !== '00';
@@ -120,7 +120,7 @@ class GB2260
     /**
      * @expectedException InvalidCodeException
      */
-    function checkInvalidCode($code = null)
+    public function checkInvalidCode($code = null)
     {
         if (is_null($code)) {
             $code = $this->currentCode;
@@ -139,7 +139,7 @@ class GB2260
     {
         if ($this->isProvince()) {
             $result = str_replace('{p}', $this->getProvince(), $formatString);
-        } else if ($this->isCity()) {
+        } elseif ($this->isCity()) {
             $result = str_replace(['{p}', '{c}'], [$this->getProvince(), $this->getCity()], $formatString);
         } else {
             $result = str_replace(
@@ -155,6 +155,4 @@ class GB2260
     {
         return (string) $this->data[$this->currentCode];
     }
-
-
 }
