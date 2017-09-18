@@ -38,7 +38,7 @@ foreach ($matches[1] as $tds) {
 
 echo sprintf('( Total: %d )', count($data)), PHP_EOL, PHP_EOL;
 
-echo 'Writing data to data/cn.php file...', PHP_EOL;
+echo 'Writing data to data/cn-gb2260.php file...', PHP_EOL;
 
 $phpHeade = '<?php' . PHP_EOL . 'return ';
 file_put_contents(dirname(__DIR__).'/data/cn-gb2260.php', $phpHeade . var_export($data, true).';'.PHP_EOL);
