@@ -35,6 +35,15 @@ GB2260::areaCode(360300)->format('{p}, {c}, {d}'); // 输出江西省, 萍乡市
 $area = new GB2260(360300); // 等价于 GB2260::areaCode(360300)
 ```
 
+## 采集 China GB2260 数据
+
+```shell
+php ./scripts/cn.php 地址
+```
+
+> 地址例如 http://www.mca.gov.cn/article/sj/tjbz/a/2017/201707/201708241433.html
+> 则采集命令为 `php ./scripts/cn.php http://www.mca.gov.cn/article/sj/tjbz/a/2017/201707/201708241433.html`
+
 ## License
 
 MIT
