@@ -25,7 +25,6 @@ preg_match_all('/\<tr.*?\>(.*?)\<\/tr\>/is', $source, $matches);
 echo 'Analyzing:', PHP_EOL;
 $data = [];
 foreach ($matches[1] as $tds) {
-
     $isMatch = preg_match('/\<td.*?\>.*?\<\/td\>.*?\<td.*?\>(\w+)\<\/td\>.*?\<td.*?\>(.*?)\<\/td\>.*?/is', $tds, $match);
 
     if ($isMatch) {
@@ -40,8 +39,8 @@ echo sprintf('( Total: %d )', count($data)), PHP_EOL, PHP_EOL;
 
 echo 'Writing data to data/cn-gb2260.php file...', PHP_EOL;
 
-$phpHeade = '<?php' . PHP_EOL . 'return ';
-file_put_contents(dirname(__DIR__).'/data/cn-gb2260.php', $phpHeade . var_export($data, true).';'.PHP_EOL);
+$phpHeader = '<?php' . PHP_EOL . 'return ';
+file_put_contents(dirname(__DIR__).'/data/cn-gb2260.php', $phpHeader . var_export($data, true).';'.PHP_EOL);
 
 echo 'Data write is complete.', PHP_EOL;
 

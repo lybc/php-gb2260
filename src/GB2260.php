@@ -15,7 +15,7 @@ class GB2260
      */
     public function __construct($currentCode)
     {
-        $this->data = require __DIR__ . '/../cn-gb2260.php';
+        $this->data = require __DIR__ . '/../data/cn-gb2260.php';
         if (! array_key_exists($currentCode, $this->data) || is_string($currentCode)) {
             throw new InvalidCodeException('invalid code or code is not number');
         }
