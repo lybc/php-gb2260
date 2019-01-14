@@ -25,7 +25,7 @@ preg_match_all('/\<tr.*?\>(.*?)\<\/tr\>/is', $source, $matches);
 echo 'Analyzing:', PHP_EOL;
 $data = [];
 foreach ($matches[1] as $tds) {
-    $isMatch = preg_match('/\<td.*?\>.*?\<\/td\>.*?\<td.*?\>(\w+)\<\/td\>.*?\<td.*?\>(.*?)\<\/td\>.*?/is', $tds, $match);
+    $isMatch = preg_match('/\<td.*?\>.*?\<\/td\>.*?\<td.*?\>(\d+)\<\/td\>.*?\<td.*?\>([^<]*).*?\<\/td\>.*?/is', $tds, $match);
 
     if ($isMatch) {
         echo '.';
